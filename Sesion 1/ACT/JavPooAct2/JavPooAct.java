@@ -1,4 +1,4 @@
-public class JavPooAct{
+public class Rectangulo{
     public static void main(String[] args){
 
         Rectangulo r1=new Rectangulo(
