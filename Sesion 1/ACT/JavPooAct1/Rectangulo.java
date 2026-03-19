@@ -17,6 +17,10 @@ class Rectangulo{
     void setEsquina2(Coordenada c){
         esquina2=new Coordenada(c);
     }
+    void calArea(){
+        double area=Math.abs((r.getEsquina2().getX()-r.getEsquina1().getX())*(r.getEsquina2().getY()-r.getEsquina1().getY()));}
+        return area;
+    }
     public String toString(){
         return "["+esquina1+" , "+esquina2+"]";
     }
