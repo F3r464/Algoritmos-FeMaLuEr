@@ -1,4 +1,4 @@
-public class Rectangulo{
+public class Principal{
     public static void main(String[] args){
 
         Rectangulo r1=new Rectangulo(
