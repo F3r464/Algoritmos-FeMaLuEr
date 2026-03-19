@@ -1,11 +1,11 @@
 import java.io.File;
 import java.util.*;
-public class Terreno{
+class Terreno{
     Zona[][] matriz;
-    public Terreno(String archivo)throws Exception{
+    public Terreno(String arc)throws Exception{
         cargar(arc);
     }
-    private void cargar(String archivo)throws Exception{
+    private void cargar(String arc)throws Exception{
         Scanner sc=new Scanner(new File(arc));
         int f=sc.nextInt();
         int c=sc.nextInt();
