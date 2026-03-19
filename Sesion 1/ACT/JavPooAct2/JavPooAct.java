@@ -17,3 +17,6 @@ public class Principal{
         System.out.println("Sobrepuestos: "+Verificador.esSobrePos(r1,r2));
         System.out.println("Juntos: "+Verificador.esJunto(r1,r2));
         System.out.println("Disjuntos: "+Verificador.esDisjunto(r1,r2));
+    }
+}
+
