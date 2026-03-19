@@ -1,4 +1,4 @@
-public class Zona{
+class Zona{
     String mineral;
     double cantidad;
     double pureza;
