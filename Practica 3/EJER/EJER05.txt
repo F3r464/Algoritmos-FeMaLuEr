@@ -1,0 +1,11 @@
+public class Main {
+    static int fibonacci(int n) { 
+        if (n <= 1)                                               //O(1)
+            return n;                                             //O(1)
+        return fibonacci(n - 1)+fibonacci(n - 2);                 //O(1)+T(n-1)+O(1)+O(1)+T(n-2)+O(1)
+    } 
+    public static void main(String[] args){ 
+        int n = 6;                                                //O(1)
+        System.out.println("Fibonacci de "+n+": "+fibonacci(n));  //O(1)+T(n)
+    }
+}
