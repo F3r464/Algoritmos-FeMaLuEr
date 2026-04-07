@@ -1,0 +1,19 @@
+FUNCION suma(v : VECTOR(ENTERO), tamaño : ENTERO) : ENTERO
+    i, result : ENTERO;                            //O(1)
+
+    SI (tamaño <= 0) ENTONCES                      //O(1)
+        DEVOLVER 0;                                //O(1)
+    FINSI
+
+    result := 0;                                   //O(1)
+
+    PARA i DESDE 0 HASTA tamaño - 1 HACER          //O(n)
+        SI (v[i] >= 0) ENTONCES                    //O(1)
+            result := result + v[i];               //O(1)
+        SINO
+            result := result + v[i];               //O(1) también suma negativos
+        FINSI
+    FINPARA
+
+    DEVOLVER result;                               //O(1)
+FINFUNCION 
