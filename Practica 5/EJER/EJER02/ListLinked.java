@@ -1,3 +1,4 @@
+import javax.print.DocFlavor.STRING;
 
 public class ListLinked<T>{
     private Node<T> primero;
