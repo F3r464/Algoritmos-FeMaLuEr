@@ -1,20 +1,19 @@
 package Extra;
 
-public class Cliente {
+public class Cliente{
     private String nombre;
     private String pedido;
-    public Cliente(String nombre, String pedido) {
+    public Cliente(String nombre, String pedido){
         this.nombre = nombre;
         this.pedido = pedido;
     }
-    public String getNombre() {
+    public String getNombre(){
         return nombre;
     }
-    public String getPedido() {
+    public String getPedido(){
         return pedido;
     }
-    @Override
-    public String toString() {
-        return nombre + " pidió: " + pedido;
+    public String toString(){
+        return nombre + " pidio: " + pedido;
     }
 }
