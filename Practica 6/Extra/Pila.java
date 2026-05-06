@@ -1,5 +1,5 @@
 package Extra;
-public interface Pila<T> {
+public interface Pila<T>{
     void push(T dato);
     T pop();
     T peek();
