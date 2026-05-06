@@ -1,40 +1,32 @@
 package Extra;
-
-public class PilaLink<T> implements Pila<T> {
+public class PilaLink<T> implements Pila<T>{
 
     private Nodo<T> cima;
 
     public PilaLink() {
         cima = null;
     }
-
     @Override
-    public void push(T dato) {
+    public void push(T dato){
         Nodo<T> nuevo = new Nodo<>(dato);
-        nuevo.setSiguiente(cima);
+        nuevo.setNext(cima);
         cima = nuevo;
     }
-
-    @Override
     public T pop() {
-        if (estaVacia()) {
+        if (isEmpty()){
             return null;
         }
         T dato = cima.getDato();
-        cima = cima.getSiguiente();
+        cima = cima.getNext();
         return dato;
     }
-
-    @Override
     public T peek() {
-        if (estaVacia()) {
+        if (isEmpty()){
             return null;
         }
         return cima.getDato();
     }
-
-    @Override
-    public boolean estaVacia() {
+    public boolean isEmpty(){
         return cima == null;
     }
 }
