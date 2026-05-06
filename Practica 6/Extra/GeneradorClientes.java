@@ -1,13 +1,10 @@
 package Extra;
-
 import java.util.Random;
-
-public class GeneradorClientes {
-
-    private static String[] nombres = {"Ana", "Luis", "Carlos", "María", "Pedro"};
+public class GeneradorClientes{
+    private static String[] nombres = {"p1", "p2", "p3", "p4", "p5"};
     private static String[] pedidos = {"Hamburguesa", "Pizza", "Hot Dog", "Ensalada"};
 
-    public static Cliente generarCliente() {
+    public static Cliente generarCliente(){
         Random rand = new Random();
 
         String nombre = nombres[rand.nextInt(nombres.length)];
