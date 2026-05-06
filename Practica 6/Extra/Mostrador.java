@@ -2,12 +2,12 @@ package Extra;
 
 import java.util.*;
 
-public class Mostrador {
+public class Mostrador{
 
     private Cola<Cliente> colaClientes;
 
     public Mostrador() {
-        colaClientes = new ColaLink<>();
+        colaClientes = new QueueLink<>();
     }
 
     public void iniciar() {
@@ -31,7 +31,7 @@ public class Mostrador {
                     break;
 
                 case 2:
-                    if (!colaClientes.estaVacia()) {
+                    if (!colaClientes.isEmpty()) {
                         Cliente atendido = colaClientes.desencolar();
                         System.out.println("Atendiendo a: " + atendido);
                     } else {
@@ -40,8 +40,8 @@ public class Mostrador {
                     break;
 
                 case 3:
-                    if (!colaClientes.estaVacia()) {
-                        System.out.println("Siguiente: " + colaClientes.frente());
+                    if (!colaClientes.isEmpty()) {
+                        System.out.println("Siguiente: " + colaClientes.getInicio());
                     } else {
                         System.out.println("No hay clientes en cola.");
                     }
