@@ -2,6 +2,6 @@ package Extra;
 public interface Cola<T> {
     void encolar(T dato);
     T desencolar();
-    T frente();
-    boolean estaVacia();
+    T getInicio();
+    boolean isEmpty();
 }
