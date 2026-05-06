@@ -1,12 +1,9 @@
 package Extra;
 public class PilaLink<T> implements Pila<T>{
-
     private Nodo<T> cima;
-
-    public PilaLink() {
+    public PilaLink(){
         cima = null;
     }
-    @Override
     public void push(T dato){
         Nodo<T> nuevo = new Nodo<>(dato);
         nuevo.setNext(cima);
