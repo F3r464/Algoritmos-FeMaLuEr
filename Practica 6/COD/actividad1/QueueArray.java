@@ -21,6 +21,10 @@ public class QueueArray<E> implements Queue<E> {
         size++;
     }
 
+    public int size(){
+        return size;
+    }
+    
     public E dequeue() throws ExceptionIsEmpty {
         if (isEmpty()) throw new ExceptionIsEmpty("");
         E aux = array[front];
