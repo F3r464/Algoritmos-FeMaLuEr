@@ -25,7 +25,7 @@ public class LinkedBST<E extends Comparable<E>> implements BinarySearchTree<E>{
     public void insert(E dato) throws ItemDuplicated{
         this.root = insertRec(this.root, dato);
     }
-    private Node insertRec(Node actual, E dato) throws ItemDuplicated{
+    private Node insertRec(Node actual, E dato) throws ItemDuplicated{  //metodo de insert
         if (actual == null){
             return new Node(dato);
         }
@@ -39,7 +39,7 @@ public class LinkedBST<E extends Comparable<E>> implements BinarySearchTree<E>{
         }
         return actual;
     }
-    public E search(E dato) throws ItemNoFound{
+    public E search(E dato) throws ItemNoFound{     //metodo de busqueda normal
         Node result = searchRec(this.root, dato);
         if (result == null){
             throw new ItemNoFound("no hay : " + dato);
@@ -47,8 +47,8 @@ public class LinkedBST<E extends Comparable<E>> implements BinarySearchTree<E>{
         return result.dato;
     }
 
-    private Node searchRec(Node actual, E dato){
-        if(actual == null ||dato.equals(actual.dato)){
+    private Node searchRec(Node actual, E dato){    //metodo de busqueda recursiva
+        if(actual == null ||dato.equals(actual.dato)){  //si actual es null O si el dato es igual al dato del nodo actual
             return actual;
         }
         if (dato.compareTo(actual.dato) < 0) {
@@ -58,13 +58,13 @@ public class LinkedBST<E extends Comparable<E>> implements BinarySearchTree<E>{
         }
     }
 
-    public void delete(E dato) throws ExceptionIsEmpty{
+    public void delete(E dato) throws ExceptionIsEmpty{     //metodo delete normal
         if (isEmpty()){
-            throw new ExceptionIsEmpty();
+            throw new ExceptionIsEmpty();   //si esta vacio
         }
         this.root=deleteRec(this.root, dato);
     }
-    private Node deleteRec(Node actual, E dato){
+    private Node deleteRec(Node actual, E dato) throws ExceptionIsEmpty{
         if (actual == null){
             return null;
         }
