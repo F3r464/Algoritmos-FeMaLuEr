@@ -1,4 +1,4 @@
-package EJER01;
+package EJER.EJER01;
 //Cada ticket es un nodo con su valor, altura y sus hijos.
 public class Nodo{
     public int ticket;      //Número del ticket.

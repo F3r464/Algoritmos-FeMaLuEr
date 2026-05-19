@@ -1,4 +1,4 @@
-package EJER02;
+package EJER.EJER02;
 //Comparación entre BST y AVL.
 public class Comparaciones{
     public static void main(String[] args){

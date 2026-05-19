@@ -1,4 +1,4 @@
-package EJER01;
+package EJER.EJER01;
 
 //Aquí coordinamos insertar, buscar y eliminar tickets.
 public class GestorTicketsAVL{

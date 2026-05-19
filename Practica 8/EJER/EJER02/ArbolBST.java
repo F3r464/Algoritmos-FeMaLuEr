@@ -1,4 +1,4 @@
-package EJER02;
+package EJER.EJER02;
 //Árbol binario de búsqueda tradicional.
 public class ArbolBST {
     private NodoBST raiz;

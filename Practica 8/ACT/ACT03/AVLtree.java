@@ -19,7 +19,8 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         super();
     }
 
-    protected int height(Node n){
+    protected int 
+    (Node n){
         if(n==null){
             return 0;
         }

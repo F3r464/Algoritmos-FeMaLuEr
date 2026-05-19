@@ -1,4 +1,4 @@
-package EJER02;
+package EJER.EJER02;
 //Cada nodo AVL almacena el dato, altura y sus hijos.
 public class NodoAVL {
     public int dato;

@@ -1,4 +1,4 @@
-package EJER02;
+package EJER.EJER02;
 //Cada nodo almacena un valor y sus hijos.
 public class NodoBST{
     public int dato;          //Valor almacenado.

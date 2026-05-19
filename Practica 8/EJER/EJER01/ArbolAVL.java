@@ -1,4 +1,5 @@
-package EJER01;
+package EJER.EJER01;
+
 //Inserción, eliminación, búsqueda, rotaciones y balanceo.
 public class ArbolAVL {
     private Nodo raiz;

@@ -1,4 +1,4 @@
-package EJER02;
+package EJER.EJER02;
 //Árbol AVL con balanceo automático.
 public class ArbolAVL {
     private NodoAVL raiz;
