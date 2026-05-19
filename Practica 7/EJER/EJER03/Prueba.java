@@ -21,8 +21,10 @@ public class Prueba{
         a2.insert(70);
         System.out.println("Area a1: "+a1.areaBST());
         System.out.println("Area a2: "+a2.areaBST());
-        System.out.println(sameArea(a1,a2));
+        System.out.println("Area igual "+sameArea(a1,a2));
+        System.out.println("Arbol 1 ");
         a1.drawBST();
+        System.out.println("\nArbol 2 ");
         a2.drawBST();
     }
 }
