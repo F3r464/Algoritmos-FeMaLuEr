@@ -1,7 +1,7 @@
 package EJER.EJER03;
 import actividad1.QueueArray;
 import ACT.ACT06.*;
-public class LinkedBSTit<E extends Comparable<E>> extends LinkedBST<E> {
+public class LinkedBSTit<E extends Comparable<E>> extends LinkedBST<E>{
     public int areaBST(){
         if(root==null){
             return 0;
