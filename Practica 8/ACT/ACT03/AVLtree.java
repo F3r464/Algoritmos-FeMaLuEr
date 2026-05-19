@@ -7,11 +7,11 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
 
     protected class AVLNode extends Node{
 
-        int height;
+        int altura;
 
         AVLNode(E dato){
             super(dato);
-            height=1;
+            altura=1;
         }
     }
 
@@ -19,32 +19,27 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         super();
     }
 
-    protected int 
-    (Node n){
+    protected int altura(Node n){
         if(n==null){
             return 0;
         }
-        return ((AVLNode)n).height;
+        return ((AVLNode)n).altura;
     }
 
     protected int balance(Node n){
         if(n==null){
             return 0;
         }
-        return height(n.left)-height(n.right);
+        return altura(n.left)-altura(n.right);
     }
 
     protected Node rotRight(Node y){
-
         Node x=y.left;
         Node t2=x.right;
-
         x.right=y;
         y.left=t2;
-
-        ((AVLNode)y).height=Math.max(height(y.left),height(y.right))+1;
-
-        ((AVLNode)x).height=Math.max(height(x.left),height(x.right))+1;
+        ((AVLNode)y).altura=Math.max(altura(y.left),altura(y.right))+1;
+        ((AVLNode)x).altura=Math.max(altura(x.left),altura(x.right))+1;
 
         return x;
     }
@@ -57,11 +52,9 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         y.left=x;
         x.right=t2;
 
-        ((AVLNode)x).height=
-        Math.max(height(x.left),height(x.right))+1;
+        ((AVLNode)x).altura= Math.max(altura(x.left),altura(x.right))+1;
 
-        ((AVLNode)y).height=
-        Math.max(height(y.left),height(y.right))+1;
+        ((AVLNode)y).altura=Math.max(altura(y.left),altura(y.right))+1;
 
         return y;
     }
@@ -69,13 +62,10 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
     public void insert(E dato) throws ItemDuplicated{
         root=insertAVL(root,dato);
     }
-
     protected Node insertAVL(Node actual,E dato) throws ItemDuplicated{
-
         if(actual==null){
             return new AVLNode(dato);
         }
-
         int cmp=dato.compareTo(actual.dato);
 
         if(cmp<0){
@@ -88,7 +78,7 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
             throw new ItemDuplicated("duplicado");
         }
 
-        ((AVLNode)actual).height= 1+Math.max(height(actual.left),height(actual.right));
+        ((AVLNode)actual).altura= 1+Math.max(altura(actual.left),altura(actual.right));
 
         int bal=balance(actual);
 
