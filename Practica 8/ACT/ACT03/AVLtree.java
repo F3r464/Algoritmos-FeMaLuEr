@@ -19,21 +19,21 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         super();
     }
 
-    private int height(Node n){
+    protected int height(Node n){
         if(n==null){
             return 0;
         }
         return ((AVLNode)n).height;
     }
 
-    private int balance(Node n){
+    protected int balance(Node n){
         if(n==null){
             return 0;
         }
         return height(n.left)-height(n.right);
     }
 
-    private Node rotRight(Node y){
+    protected Node rotRight(Node y){
 
         Node x=y.left;
         Node t2=x.right;
@@ -48,7 +48,7 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         return x;
     }
 
-    private Node rotLeft(Node x){
+    protected Node rotLeft(Node x){
 
         Node y=x.right;
         Node t2=y.left;
@@ -69,7 +69,7 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         root=insertAVL(root,dato);
     }
 
-    private Node insertAVL(Node actual,E dato) throws ItemDuplicated{
+    protected Node insertAVL(Node actual,E dato) throws ItemDuplicated{
 
         if(actual==null){
             return new AVLNode(dato);
@@ -122,7 +122,7 @@ public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
         System.out.println();
     }
 
-    private void preOrder(Node actual){
+    protected void preOrder(Node actual){
 
         if(actual!=null){
             System.out.print(actual.dato+" ");
