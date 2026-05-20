@@ -1,12 +1,24 @@
 package ACT.ACT03;
 
-public class AVLnodo{
-    public int dato;      //Número del ticket.
-    public int altura;      //Altura del nodo.
-    public AVLnodo izquierdo;  //Hijo izquierdo.
-    public AVLnodo derecho;    //Hijo derecho.
-    public AVLnodo(int ticket){
-        this.dato = ticket;
-        this.altura = 1; //Un nodo solo ya tiene altura 1.
+public class AVLnodo<E>{
+
+    public E dato;
+    public int bf;
+
+    public AVLnodo<E> left;
+    public AVLnodo<E> right;
+
+    public AVLnodo(E dato){
+
+        this.dato=dato;
+        this.bf=0;
+
+        this.left=null;
+        this.right=null;
+    }
+
+    public String toString(){
+
+        return dato+"(bf:"+bf+")";
     }
 }

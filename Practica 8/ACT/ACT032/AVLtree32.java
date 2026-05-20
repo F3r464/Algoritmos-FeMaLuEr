@@ -1,67 +1,84 @@
-package ACT.ACT032
+package ACT.ACT032;
 
-import ACT.ACT03.AVLtree;
+import ACT.ACT03.*;
 import ACT.ACT031.*;
+
+import ACT.ACT033.*;
 import ACT.ACT04.*;
-public class AVLtree32<E extends Comparable<E>> extends AVLtree<E> {
 
-    public void insert(E x) throws ItemDuplicated {
-        this.height = false;
-        this.root = insert(x, (NodeAVL) this.root);
+public class AVLtree32<E extends Comparable<E>>
+extends AVLtree31<E>{
+    protected boolean altura;
+    public void insert(E x)
+    throws ItemDuplicated{
+        altura=false;
+        root=insertRec(root,x);
     }
+    private AVLnodo<E> insertRec(AVLnodo<E> node,E x)throws ItemDuplicated{
+        if(node==null){
+            altura=true;
+            return new AVLnodo<>(x);
+        }
+        int cmp=x.compareTo(node.dato);
+        if(cmp<0){
+            node.left=
+            insertRec(node.left,x);
 
-    protected Node insert(E x, NodeAVL node) throws ItemDuplicated {
-        NodeAVL fat = node;
+            if(altura){
 
-        if (node == null) {
-            this.height = true;
-            fat = new NodeAVL(x);
-        } else {
-            // Compara el dato del nodo actual con el elemento x a insertar
-            int resC = node.dato.compareTo(x);
+                switch(node.bf){
 
-            if (resC == 0) {
-                throw new ItemDuplicated(x + " ya se encuentra en el arbol...");
-            }
+                    case 1:
+                        node.bf=0;
+                        altura=false;
+                        break;
 
-            if (resC < 0) { // x es mayor -> va a la derecha
-                fat.right = insert(x, (NodeAVL) node.right);
-                if (this.height) {
-                    switch (fat.bf) {
-                        case -1:
-                            fat.bf = 0;
-                            this.height = false;
-                            break;
-                        case 0:
-                            fat.bf = 1; // f = 1; en la imagen
-                            this.height = true;
-                            break;
-                        case 1: // bf = 2
-                            fat = balanceToRight(fat);
-                            this.height = false;
-                            break;
-                    }
-                }
-            } else { // COMPLETADO: x es menor -> va a la izquierda
-                fat.left = insert(x, (NodeAVL) node.left);
-                if (this.height) {
-                    switch (fat.bf) {
-                        case 1:
-                            fat.bf = 0;
-                            this.height = false;
-                            break;
-                        case 0:
-                            fat.bf = -1;
-                            this.height = true;
-                            break;
-                        case -1: // bf = -2
-                            fat = balanceToLeft(fat);
-                            this.height = false;
-                            break;
-                    }
+                    case 0:
+                        node.bf=-1;
+                        break;
+
+                    case -1:
+                        node= balanceToLeft(node);
+
+                        altura=false;
+                        break;
                 }
             }
         }
-        return fat;
-    }  
+
+        else if(cmp>0){
+
+            node.right=
+            insertRec(node.right,x);
+
+            if(altura){
+
+                switch(node.bf){
+
+                    case -1:
+                        node.bf=0;
+                        altura=false;
+                        break;
+
+                    case 0:
+                        node.bf=1;
+                        break;
+
+                    case 1:
+                        node=
+                        balanceToRight(node);
+
+                        altura=false;
+                        break;
+                }
+            }
+        }
+
+        else{
+            throw new ItemDuplicated(
+            "duplicado");
+        }
+
+        return node;
+    }
 }

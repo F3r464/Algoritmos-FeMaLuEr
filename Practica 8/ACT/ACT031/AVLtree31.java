@@ -1,22 +1,40 @@
 package ACT.ACT031;
 
-import ACT.ACT03.AVLtree;
+import ACT.ACT03.*;
 
-public class AVLtree31<E extends Comparable<E>> extends AVLtree<E> {
+public class AVLtree31<E extends Comparable<E>>{
 
-    class NodeAVL extends Node {
-        protected int bf; // Factor de equilibrio
+    protected AVLnodo<E> root;
 
-        public NodeAVL(E data) {
-            super(data);
-            this.bf = 0; // Inicia equilibrado (nodo hoja)
-        }
+    public AVLtree31(){
 
-        @Override
-        public String toString() {
-            return dato.toString() + " (bf: " + bf + ")";
-        }
+        root=null;
     }
 
-    private boolean altura; // Indicador de cambio de altura
+    public boolean isEmpty(){
+
+        return root==null;
+    }
+
+    protected AVLnodo<E> rotRight(AVLnodo<E> y){
+
+        AVLnodo<E> x=y.left;
+        AVLnodo<E> t2=x.right;
+
+        x.right=y;
+        y.left=t2;
+
+        return x;
+    }
+
+    protected AVLnodo<E> rotLeft(AVLnodo<E> x){
+
+        AVLnodo<E> y=x.right;
+        AVLnodo<E> t2=y.left;
+
+        y.left=x;
+        x.right=t2;
+
+        return y;
+    }
 }

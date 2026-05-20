@@ -1,14 +1,16 @@
 package ACT.ACT033;
 
+import ACT.ACT03.AVLnodo;
+
 public class AVLtree33 {
-    private NodeAVL balanceToLeft(NodeAVL node) {
-        NodeAVL izquierdo = (NodeAVL) node.left;
-        if (izquierdo.bf == -1) { // Caso LL
+    private AVLnodo balanceToLeft(AVLnodo node){
+        AVLnodo izquierdo = (AVLnodo) node.left;
+        if (izquierdo.bf == -1){ // Caso LL
             node.bf = 0;
             izquierdo.bf = 0;
-            node = (NodeAVL) rotRight(node);
+            node = (AVLnodo) rotRight(node);
         } else { // Caso LR
-            NodeAVL subDerecho = (NodeAVL) izquierdo.right;
+            AVLnodo subDerecho = (AVLnodo) izquierdo.right;
             switch (subDerecho.bf) {
                 case -1:
                     node.bf = 1;
@@ -25,19 +27,19 @@ public class AVLtree33 {
             }
             subDerecho.bf = 0;
             node.left = rotLeft(izquierdo);
-            node = (NodeAVL) rotRight(node);
+            node = (AVLnodo) rotRight(node);
         }
         return node;
     }
 
-    private NodeAVL balanceToRight(NodeAVL node) {
-        NodeAVL derecho = (NodeAVL) node.right;
+    private AVLnodo balanceToRight(AVLnodo node) {
+        AVLnodo derecho = (AVLnodo) node.right;
         if (derecho.bf == 1) { // Caso RR
             node.bf = 0;
             derecho.bf = 0;
-            node = (NodeAVL) rotLeft(node);
+            node = (AVLnodo) rotLeft(node);
         } else { // Caso RL
-            NodeAVL subIzquierdo = (NodeAVL) derecho.left;
+            AVLnodo subIzquierdo = (AVLnodo) derecho.left;
             switch (subIzquierdo.bf) {
                 case 1:
                     node.bf = -1;
@@ -54,12 +56,12 @@ public class AVLtree33 {
             }
             subIzquierdo.bf = 0;
             node.right = rotRight(derecho);
-            node = (NodeAVL) rotLeft(node);
+            node = (AVLnodo) rotLeft(node);
         }
         return node;
     }
 
-    // --- ANULACIÓN DE ROTACIONES HEREDADAS PARA TRABAJAR CON NODEAVL ---
+    // --- ANULACIÓN DE ROTACIONES HEREDADAS PARA TRABAJAR CON AVLnodo ---
 
     @Override
     protected Node rotRight(Node y) {
