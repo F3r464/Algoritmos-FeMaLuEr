@@ -1,7 +1,7 @@
 package ACT.ACT032
 
 import ACT.ACT03.AVLtree;
-import ACT.ACT031;
+import ACT.ACT031.*;
 import ACT.ACT04.*;
 public class AVLtree32<E extends Comparable<E>> extends AVLtree<E> {
 
@@ -18,7 +18,6 @@ public class AVLtree32<E extends Comparable<E>> extends AVLtree<E> {
             fat = new NodeAVL(x);
         } else {
             // Compara el dato del nodo actual con el elemento x a insertar
-            // Se usa "node.dato" porque tu clase base Node lo define en español
             int resC = node.dato.compareTo(x);
 
             if (resC == 0) {
