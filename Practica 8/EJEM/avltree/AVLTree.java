@@ -250,7 +250,7 @@ public class AVLTree<E extends Comparable<E>> extends BSTree<E> {
  
         int cmp = x.compareTo(node.getData());
  
-        if (cmp < 0) {
+        
             // ── Buscar y eliminar en el subárbol IZQUIERDO ──────
             node.setLeft(deleteAVL(x, node.getLeft()));
             if (this.height) {
