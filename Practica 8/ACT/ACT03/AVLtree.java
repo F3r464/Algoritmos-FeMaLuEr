@@ -1,124 +1,188 @@
 package ACT.ACT03;
 
-import ACT.ACT06.*;
 import ACT.ACT04.*;
+public class AVLtree<E extends Comparable<E>>{
+    public class AVLnodo{
+        public E dato;
+        public int bf;
+        public AVLnodo left;
+        public AVLnodo right;
 
-public class AVLtree<E extends Comparable<E>> extends LinkedBST<E>{
-
-    protected class AVLNode extends Node{
-
-        int altura;
-
-        AVLNode(E dato){
-            super(dato);
-            altura=1;
+        public AVLnodo(E dato){
+            this.dato=dato;
+            this.bf=0;
+            left=null;
+            right=null;
+        }
+        public String toString(){
+            return dato+"(bf:"+bf+")";
         }
     }
+    protected AVLnodo root;
+    protected boolean altura;
 
     public AVLtree(){
-        super();
+        root=null;
+    }
+    public boolean isEmpty(){
+        return root==null;
     }
 
-    protected int altura(Node n){
-        if(n==null){
-            return 0;
+    public void insert(E x)throws ItemDuplicated{
+        altura=false;
+        root=insertRec(root,x);
+    }
+    private AVLnodo insertRec(AVLnodo node,E x)throws ItemDuplicated{
+        if(node==null){
+            altura=true;
+            return new AVLnodo(x);
         }
-        return ((AVLNode)n).altura;
-    }
-
-    protected int balance(Node n){
-        if(n==null){
-            return 0;
-        }
-        return altura(n.left)-altura(n.right);
-    }
-
-    protected Node rotRight(Node y){
-        Node x=y.left;
-        Node t2=x.right;
-        x.right=y;
-        y.left=t2;
-        ((AVLNode)y).altura=Math.max(altura(y.left),altura(y.right))+1;
-        ((AVLNode)x).altura=Math.max(altura(x.left),altura(x.right))+1;
-
-        return x;
-    }
-
-    protected Node rotLeft(Node x){
-
-        Node y=x.right;
-        Node t2=y.left;
-
-        y.left=x;
-        x.right=t2;
-
-        ((AVLNode)x).altura= Math.max(altura(x.left),altura(x.right))+1;
-
-        ((AVLNode)y).altura=Math.max(altura(y.left),altura(y.right))+1;
-
-        return y;
-    }
-
-    public void insert(E dato) throws ItemDuplicated{
-        root=insertAVL(root,dato);
-    }
-    protected Node insertAVL(Node actual,E dato) throws ItemDuplicated{
-        if(actual==null){
-            return new AVLNode(dato);
-        }
-        int cmp=dato.compareTo(actual.dato);
-
+        int cmp=x.compareTo(node.dato);
+        //izquierda
         if(cmp<0){
-            actual.left=insertAVL(actual.left,dato);
+            node.left=insertRec(node.left,x);
+            if(altura){
+                switch(node.bf){
+                    case 1:
+                        node.bf=0;
+                        altura=false;
+                        break;
+                    case 0:
+                        node.bf=-1;
+                        break;
+                    case -1:
+                        node=balanceToLeft(node);
+                        altura=false;
+                        break;
+                }
+            }
         }
+        //derecha
         else if(cmp>0){
-            actual.right=insertAVL(actual.right,dato);
+            node.right=insertRec(node.right,x);
+            if(altura){
+                switch(node.bf){
+                    case -1:
+                        node.bf=0;
+                        altura=false;
+                        break;
+                    case 0:
+                        node.bf=1;
+                        break;
+                    case 1:
+                        node=balanceToRight(node);
+                        altura=false;
+                        break;
+                }
+            }
         }
         else{
             throw new ItemDuplicated("duplicado");
         }
-
-        ((AVLNode)actual).altura= 1+Math.max(altura(actual.left),altura(actual.right));
-
-        int bal=balance(actual);
-
-        // LL
-        if(bal>1 && dato.compareTo(actual.left.dato)<0){
-            return rotRight(actual);
-        }
-
-        // RR
-        if(bal<-1 && dato.compareTo(actual.right.dato)>0){
-            return rotLeft(actual);
-        }
-
-        // LR
-        if(bal>1 && dato.compareTo(actual.left.dato)>0){
-            actual.left=rotLeft(actual.left);
-            return rotRight(actual);
-        }
-
-        // RL
-        if(bal<-1 && dato.compareTo(actual.right.dato)<0){
-            actual.right=rotRight(actual.right);
-            return rotLeft(actual);
-        }
-
-        return actual;
+        return node;
     }
 
+    protected AVLnodo balanceToLeft(AVLnodo node){
+        AVLnodo izq=node.left;
+        //LL
+        if(izq.bf==-1){
+            node.bf=0;
+            izq.bf=0;
+            node=rotRight(node);
+        }
+
+        //LR
+        else{
+            AVLnodo der=izq.right;
+            switch(der.bf){
+                case -1:
+                    node.bf=1;
+                    izq.bf=0;
+                    break;
+                case 0:
+                    node.bf=0;
+                    izq.bf=0;
+                    break;
+                case 1:
+                    node.bf=0;
+                    izq.bf=-1;
+                    break;
+            }
+            der.bf=0;
+            node.left=rotLeft(izq);
+            node=rotRight(node);
+        }
+
+        return node;
+    }
+    protected AVLnodo balanceToRight(AVLnodo node){
+        AVLnodo der=node.right;
+        //RR
+        if(der.bf==1){
+            node.bf=0;
+            der.bf=0;
+            node=rotLeft(node);
+        }
+        //RL
+        else{
+            AVLnodo izq=der.left;
+            switch(izq.bf){
+                case 1:
+                    node.bf=-1;
+                    der.bf=0;
+                    break;
+                case 0:
+                    node.bf=0;
+                    der.bf=0;
+                    break;
+                case -1:
+                    node.bf=0;
+                    der.bf=1;
+                    break;
+            }
+            izq.bf=0;
+            node.right=rotRight(der);
+            node=rotLeft(node);
+        }
+        return node;
+    }
+    protected AVLnodo rotRight(AVLnodo y){
+        AVLnodo x=y.left;
+        AVLnodo t2=x.right;
+        x.right=y;
+        y.left=t2;
+        return x;
+    }
+    protected AVLnodo rotLeft(AVLnodo x){
+        AVLnodo y=x.right;
+        AVLnodo t2=y.left;
+        y.left=x;
+        x.right=t2;
+        return y;
+    }
     public void preOrder(){
         System.out.print("AVL: ");
-        preOrder(root);
+        preOrderRec(root);
         System.out.println();
     }
-
-    protected void preOrder(Node actual){
-
+    private void preOrderRec(AVLnodo actual){
         if(actual!=null){
-            System.out.print(actual.dato+" ");
-            preOrder(actual.left);
-            preOrder(actual.right);
+            System.out.print(actual+" ");
+            preOrderRec(actual.left);
+            preOrderRec(actual.right);
+        }
+    }
+    public void inOrder(){
+        System.out.print("InOrder: ");
+        inOrderRec(root);
+        System.out.println();
+    }
+    private void inOrderRec(
+    AVLnodo actual){
+        if(actual!=null){
+            inOrderRec(actual.left);
+            System.out.print(actual+" ");
+            inOrderRec(actual.right);
         }
     }
 }

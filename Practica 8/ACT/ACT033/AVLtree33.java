@@ -1,81 +1,123 @@
 package ACT.ACT033;
 
-import ACT.ACT03.AVLnodo;
+import ACT.ACT03.*;
+import ACT.ACT032.*;
 
-public class AVLtree33 {
-    private AVLnodo balanceToLeft(AVLnodo node){
-        AVLnodo izquierdo = (AVLnodo) node.left;
-        if (izquierdo.bf == -1){ // Caso LL
-            node.bf = 0;
-            izquierdo.bf = 0;
-            node = (AVLnodo) rotRight(node);
-        } else { // Caso LR
-            AVLnodo subDerecho = (AVLnodo) izquierdo.right;
-            switch (subDerecho.bf) {
+public class AVLtree33<E extends Comparable<E>>
+extends AVLtree32<E>{
+
+    protected AVLnodo<E>
+    balanceToLeft(AVLnodo<E> node){
+
+        AVLnodo<E> izq=node.left;
+
+        //LL
+        if(izq.bf==-1){
+
+            node.bf=0;
+            izq.bf=0;
+
+            node=rotRight(node);
+        }
+
+        //LR
+        else{
+
+            AVLnodo<E> der=izq.right;
+
+            switch(der.bf){
+
                 case -1:
-                    node.bf = 1;
-                    izquierdo.bf = 0;
+                    node.bf=1;
+                    izq.bf=0;
                     break;
+
                 case 0:
-                    node.bf = 0;
-                    izquierdo.bf = 0;
+                    node.bf=0;
+                    izq.bf=0;
                     break;
+
                 case 1:
-                    node.bf = 0;
-                    izquierdo.bf = -1;
+                    node.bf=0;
+                    izq.bf=-1;
                     break;
             }
-            subDerecho.bf = 0;
-            node.left = rotLeft(izquierdo);
-            node = (AVLnodo) rotRight(node);
+
+            der.bf=0;
+
+            node.left=rotLeft(izq);
+
+            node=rotRight(node);
         }
+
         return node;
     }
 
-    private AVLnodo balanceToRight(AVLnodo node) {
-        AVLnodo derecho = (AVLnodo) node.right;
-        if (derecho.bf == 1) { // Caso RR
-            node.bf = 0;
-            derecho.bf = 0;
-            node = (AVLnodo) rotLeft(node);
-        } else { // Caso RL
-            AVLnodo subIzquierdo = (AVLnodo) derecho.left;
-            switch (subIzquierdo.bf) {
+    protected AVLnodo<E>
+    balanceToRight(AVLnodo<E> node){
+
+        AVLnodo<E> der=node.right;
+
+        //RR
+        if(der.bf==1){
+
+            node.bf=0;
+            der.bf=0;
+
+            node=rotLeft(node);
+        }
+
+        //RL
+        else{
+
+            AVLnodo<E> izq=der.left;
+
+            switch(izq.bf){
+
                 case 1:
-                    node.bf = -1;
-                    derecho.bf = 0;
+                    node.bf=-1;
+                    der.bf=0;
                     break;
+
                 case 0:
-                    node.bf = 0;
-                    derecho.bf = 0;
+                    node.bf=0;
+                    der.bf=0;
                     break;
+
                 case -1:
-                    node.bf = 0;
-                    derecho.bf = 1;
+                    node.bf=0;
+                    der.bf=1;
                     break;
             }
-            subIzquierdo.bf = 0;
-            node.right = rotRight(derecho);
-            node = (AVLnodo) rotLeft(node);
+
+            izq.bf=0;
+
+            node.right=rotRight(der);
+
+            node=rotLeft(node);
         }
+
         return node;
     }
 
-    // --- ANULACIÓN DE ROTACIONES HEREDADAS PARA TRABAJAR CON AVLnodo ---
+    public void preOrder(){
 
-    @Override
-    protected Node rotRight(Node y) {
-        Node x = y.left;
-        y.left = x.right;
-        x.right = y;
-        return x;
+        System.out.print("AVL: ");
+
+        preOrderRec(root);
+
+        System.out.println();
     }
 
-    @Override
-    protected Node rotLeft(Node x) {
-        Node y = x.right;
-        x.right = y.left;
-        y.left = x;
-        return y;
+    private void preOrderRec(
+    AVLnodo<E> actual){
+
+        if(actual!=null){
+
+            System.out.print(actual+" ");
+
+            preOrderRec(actual.left);
+            preOrderRec(actual.right);
+        }
     }
 }

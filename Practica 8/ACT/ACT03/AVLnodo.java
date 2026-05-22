@@ -13,10 +13,11 @@ public class AVLnodo<E>{
         this.dato=dato;
         this.bf=0;
 
-        this.left=null;
-        this.right=null;
+        left=null;
+        right=null;
     }
 
+    @Override
     public String toString(){
 
         return dato+"(bf:"+bf+")";

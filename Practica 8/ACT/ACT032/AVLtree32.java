@@ -2,25 +2,36 @@ package ACT.ACT032;
 
 import ACT.ACT03.*;
 import ACT.ACT031.*;
-
-import ACT.ACT033.*;
 import ACT.ACT04.*;
+import ACT.ACT033.*;
 
-public class AVLtree32<E extends Comparable<E>>
-extends AVLtree31<E>{
+public class AVLtree32<E extends Comparable<E>>extends AVLtree31<E>{
+
     protected boolean altura;
+
     public void insert(E x)
     throws ItemDuplicated{
+
         altura=false;
+
         root=insertRec(root,x);
     }
-    private AVLnodo<E> insertRec(AVLnodo<E> node,E x)throws ItemDuplicated{
+
+    private AVLnodo<E> insertRec(
+    AVLnodo<E> node,E x)
+    throws ItemDuplicated{
+
         if(node==null){
+
             altura=true;
+
             return new AVLnodo<>(x);
         }
+
         int cmp=x.compareTo(node.dato);
+
         if(cmp<0){
+
             node.left=
             insertRec(node.left,x);
 
@@ -38,7 +49,8 @@ extends AVLtree31<E>{
                         break;
 
                     case -1:
-                        node= balanceToLeft(node);
+                        node=
+                        balanceToLeft(node);
 
                         altura=false;
                         break;
