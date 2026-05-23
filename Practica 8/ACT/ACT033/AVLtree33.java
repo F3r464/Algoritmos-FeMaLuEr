@@ -1,6 +1,6 @@
 package ACT.ACT033;
 
-import ACT.ACT03.*;
+import ACT.ACT03.AVLtree;
 import ACT.ACT032.*;
 
 public class AVLtree33<E extends Comparable<E>>

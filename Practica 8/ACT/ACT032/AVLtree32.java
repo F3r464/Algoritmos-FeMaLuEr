@@ -1,94 +1,63 @@
 package ACT.ACT032;
 
 import ACT.ACT03.*;
-import ACT.ACT031.*;
 import ACT.ACT04.*;
-import ACT.ACT033.*;
 
-public class AVLtree32<E extends Comparable<E>>extends AVLtree31<E>{
+public class AVLtree32<E extends Comparable<E>>extends AVLtree<E>{
 
-    protected boolean altura;
-
-    public void insert(E x)
-    throws ItemDuplicated{
-
+//Inicio ACt 3.2
+    public void insert(E x)throws ItemDuplicated{
         altura=false;
-
         root=insertRec(root,x);
     }
-
-    private AVLnodo<E> insertRec(AVLnodo<E> node,E x)throws ItemDuplicated{
-
+    private AVLnodo insertRec(AVLnodo node,E x)throws ItemDuplicated{
         if(node==null){
-
             altura=true;
-
-            return new AVLnodo<>(x);
+            return new AVLnodo(x);
         }
-
         int cmp=x.compareTo(node.dato);
-
+        //izquierda
         if(cmp<0){
-
-            node.left=
-            insertRec(node.left,x);
-
+            node.left=insertRec(node.left,x);
             if(altura){
-
                 switch(node.bf){
-
                     case 1:
                         node.bf=0;
                         altura=false;
                         break;
-
                     case 0:
                         node.bf=-1;
                         break;
-
                     case -1:
-                        node=
-                        balanceToLeft(node);
-
+                        node=balanceToLeft(node);
                         altura=false;
                         break;
                 }
             }
         }
-
+        //derecha
         else if(cmp>0){
-
-            node.right=
-            insertRec(node.right,x);
-
+            node.right=insertRec(node.right,x);
             if(altura){
-
                 switch(node.bf){
-
                     case -1:
                         node.bf=0;
                         altura=false;
                         break;
-
                     case 0:
                         node.bf=1;
                         break;
-
                     case 1:
-                        node=
-                        balanceToRight(node);
-
+                        node=balanceToRight(node);
                         altura=false;
                         break;
                 }
             }
         }
-
         else{
-            throw new ItemDuplicated(
-            "duplicado");
+            throw new ItemDuplicated("duplicado");
         }
-
         return node;
     }
+//Fin Act 3.2
 }
