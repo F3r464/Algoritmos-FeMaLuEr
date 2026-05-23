@@ -1,7 +1,7 @@
 package ACT.ACT034;
 
 import ACT.ACT03.*;
-public class AVLtree34<E extends Comparable<E>>{
+public class AVLtree34<E extends Comparable<E>>extends AVLtree<E>{
 
 //Incicio Act 3.4
     protected AVLnodo rotRight(AVLnodo y){
