@@ -17,9 +17,7 @@ public class AVLtree32<E extends Comparable<E>>extends AVLtree31<E>{
         root=insertRec(root,x);
     }
 
-    private AVLnodo<E> insertRec(
-    AVLnodo<E> node,E x)
-    throws ItemDuplicated{
+    private AVLnodo<E> insertRec(AVLnodo<E> node,E x)throws ItemDuplicated{
 
         if(node==null){
 
