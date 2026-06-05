@@ -1,0 +1,15 @@
+FUNCION max(x : ENTERO, y : ENTERO) : ENTERO    
+    result : ENTERO;                            //O(1)
+     
+    SI (x = y) ENTONCES                         //O(1)
+        result := x;                            //O(1)
+    SINO                                        
+        SI (x > y) ENTONCES                     //O(1)
+            result := x;                        //O(1)
+        SINO                                    //O(1)
+            Result := y;                        //O(1)
+        FINSI
+    FINSI
+
+    DEVOLVER result;                            //O(1)
+FINFUNCION

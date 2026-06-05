@@ -1,0 +1,19 @@
+PROCEDIMIENTO ordenar(REF v : VECTOR(ENTERO), tamaño : ENTERO)
+    i, j, aux : ENTERO;                               //O(1)
+
+    SI (tamaño <= 1) ENTONCES                         //O(1)
+        DEVOLVER;                                     //O(1)
+    FINSI
+
+    PARA i DESDE 0 HASTA tamaño - 2 HACER             //O(n)
+        PARA j DESDE 0 HASTA tamaño - 2 - i HACER     //O(n)
+            SI (v[j] > v[j + 1]) ENTONCES             //O(1)
+                aux := v[j];                          //O(1)
+                v[j] := v[j + 1];                     //O(1)
+                v[j + 1] := aux;                      //O(1)
+            FINSI
+        FINPARA
+    FINPARA
+FINPROCEDIMIENTO
+ 
+
