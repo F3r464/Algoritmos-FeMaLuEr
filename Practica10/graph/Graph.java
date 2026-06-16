@@ -2,9 +2,7 @@ package graph;
 
 import java.util.ArrayList;
 
-/**
- * TAD Graph: Interfaz genérica que define las operaciones básicas de un grafo.
- */
+
 public interface Graph<E> {
     void insertVertex(E data);
     void insertEdge(E origin, E destination);
