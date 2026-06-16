@@ -10,7 +10,7 @@ public class BTree<E extends Comparable<E>> {
     private boolean up;       // Señal: ¿hay una mediana que debe subir al padre?
     private BNode<E> nDes;    // Nuevo nodo derecho generado en una división
  
-    //Constructor 
+    //Constructor  
     public BTree(int orden) {
         this.orden = orden;
         this.root  = null;
@@ -356,8 +356,7 @@ public class BTree<E extends Comparable<E>> {
         leftSibling.count--;
     }
  
-    private void mergeNodes(BNode<E> left, BNode<E> parent,
-                            int parentIdx, BNode<E> right) {
+    private void mergeNodes(BNode<E> left, BNode<E> parent, int parentIdx, BNode<E> right) {
         // Bajar la clave separadora del padre al final de left
         left.keys.set(left.count, parent.keys.get(parentIdx));
         left.childs.set(left.count + 1, right.childs.get(0));
