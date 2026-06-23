@@ -2,8 +2,8 @@ package Practica10.EJER.EJER02;
 
 public class ListLinked<E>{
 
-    private Node<E> first;
-    private int size;
+    protected Node<E> first;
+    protected int size;
 
     public ListLinked(){
         first = null;
