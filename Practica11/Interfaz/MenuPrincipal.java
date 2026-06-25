@@ -1,4 +1,4 @@
-package Practica11.Interfaz.src;
+package Practica11.Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ public class MenuPrincipal extends JFrame {
 
     public MenuPrincipal() {
 
-        setTitle("HashVerse");
+        setTitle("FeMaLuEr Hash 00");
         setSize(800, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class MenuPrincipal extends JFrame {
 
         iniciar.addActionListener(e -> {
             dispose();
-            new Practica11.Interfaz.src.HashGamePanel();
+            new Practica11.Interfaz.HashGamePanel();
         });
 
         creditos.addActionListener(e -> {

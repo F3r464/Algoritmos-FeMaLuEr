@@ -1,4 +1,4 @@
-package Practica11.Interfaz.src;
+package Practica11.Interfaz;
 
 public class GameManager {
 

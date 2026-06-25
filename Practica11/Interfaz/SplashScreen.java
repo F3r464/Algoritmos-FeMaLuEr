@@ -1,4 +1,4 @@
-package Practica11.Interfaz.src;
+package Practica11.Interfaz;
 
 import javax.swing.*;
 
@@ -11,7 +11,7 @@ public class SplashScreen extends JFrame {
 
     public SplashScreen() {
 
-        setTitle("HashVerse");
+        setTitle("    HashVerse- FeMaLuEr");
         setSize(700,400);
         setLocationRelativeTo(null);
         setUndecorated(true);

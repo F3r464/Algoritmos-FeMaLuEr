@@ -1,4 +1,4 @@
-package Practica11.Interfaz.src;
+package Practica11.Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,12 +36,18 @@ public class HashGamePanel extends JFrame {
 
         JButton generar = crearBoton("Generar");
         generar.setBounds(210, 50, 150, 35);
+        JButton buscar = crearBoton("Buscar");
+        buscar.setBounds(530, 50, 150, 35);
+
+        JButton eliminar = crearBoton("Eliminar");
+        eliminar.setBounds(690, 50, 150, 35);
+
+        JButton volver = crearBoton("Volver");
+        volver.setBounds(850, 50, 100, 35);
 
         JButton limpiar = crearBoton("Limpiar");
         limpiar.setBounds(370, 50, 150, 35);
 
-        JButton volver = crearBoton("Volver");
-        volver.setBounds(530, 50, 150, 35);
 
         log = new JTextArea();
         log.setBounds(20, 100, 450, 430);
@@ -65,7 +71,8 @@ public class HashGamePanel extends JFrame {
         insertar.addActionListener(e -> insertarJugadorManual());
         generar.addActionListener(e -> generarAleatorio());
         limpiar.addActionListener(e -> log.setText(""));
-
+        buscar.addActionListener(e -> buscarJugador());
+        eliminar.addActionListener(e -> eliminarJugador());
         volver.addActionListener(e -> {
             dispose();
             new MenuPrincipal();
@@ -73,6 +80,8 @@ public class HashGamePanel extends JFrame {
 
         background.add(insertar);
         background.add(generar);
+        background.add(buscar);
+        background.add(eliminar);
         background.add(limpiar);
         background.add(volver);
         background.add(log);
@@ -130,7 +139,74 @@ public class HashGamePanel extends JFrame {
 
         refrescarTabla();
     }
+    private void buscarJugador() {
 
+        String idStr = JOptionPane.showInputDialog("Ingrese el ID a buscar:");
+
+        if(idStr == null) return;
+
+        try{
+
+            int id = Integer.parseInt(idStr);
+
+            Register r = table.search(id);
+
+            if(r != null){
+
+                JOptionPane.showMessageDialog(this,
+                        "Jugador encontrado\n\n" +
+                        "ID: " + r.getId() +
+                        "\nNombre: " + r.getNombre());
+
+                log.append("Se encontró -> " + r + "\n");
+
+            }else{
+
+                JOptionPane.showMessageDialog(this,
+                        "No existe ese jugador");
+
+                log.append("No se encontró el ID " + id + "\n");
+
+            }
+
+        }catch(Exception e){
+
+            JOptionPane.showMessageDialog(this,"ID inválido");
+
+        }
+
+    }
+    private void eliminarJugador() {
+
+        String idStr = JOptionPane.showInputDialog("Ingrese el ID a eliminar:");
+
+        if(idStr == null) return;
+
+        try{
+
+            int id = Integer.parseInt(idStr);
+
+            boolean eliminado = table.delete(id);
+
+            if(eliminado){
+
+                log.append("Jugador eliminado: " + id + "\n");
+
+            }else{
+
+                log.append("No existe ese jugador.\n");
+
+            }
+
+            refrescarTabla();
+
+        }catch(Exception e){
+
+            JOptionPane.showMessageDialog(this,"ID inválido");
+
+        }
+
+    }
     private void refrescarTabla() {
 
         Register[] t = table.getTable();
