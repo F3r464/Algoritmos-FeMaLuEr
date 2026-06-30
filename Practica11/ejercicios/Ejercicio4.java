@@ -10,7 +10,7 @@ public class Ejercicio4 {
     static class Entry {
         int key;
         int status;
-
+        //contructor 
         Entry() { key = -1; status = EMPTY; }
 
         String statusStr() {
@@ -23,7 +23,7 @@ public class Ejercicio4 {
         }
     }
 
-    static Entry[] table = new Entry[SIZE];
+    static Entry[] table = new Entry[SIZE];     //arreglo de tabla hash fijo
 
     public static void main(String[] args) {
         System.out.println("========================================");
@@ -53,8 +53,9 @@ public class Ejercicio4 {
         insert(33);
         printTable("Tabla después de reinsertar 33");
     }
-
-    static int hash(int key) { return key % SIZE; }
+    //función hash para obtener el índice de la tabla
+    static int hash(int key) 
+    { return key % SIZE; }
 
     static void insert(int key) {
         int h = hash(key);
@@ -71,7 +72,7 @@ public class Ejercicio4 {
             } else if (table[h].status == DELETED && firstDeleted == -1) {
                 firstDeleted = h; // Memoriza la primera ranura libre pero prosigue para descartar duplicados adelante
             }
-            h = (h + 1) % SIZE; // Incrementa el cursor lineal mediante aritmética modular circular
+            h = (h + 1) % SIZE; // Cuando ocurre una colisión: sondeo lienal si hay espacio
         } while (h != start);
 
         if (firstDeleted != -1) { // Caso alternativo: Tabla saturada de ocupados pero con huecos lógicos lícitos

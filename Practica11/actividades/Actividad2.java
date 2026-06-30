@@ -17,7 +17,6 @@ public class Actividad2 {
         private static final int EMPTY    = 0;
         private static final int OCCUPIED = 1;
         private static final int DELETED  = 2;
-
         private Element<T>[] table;
         private int size;
 

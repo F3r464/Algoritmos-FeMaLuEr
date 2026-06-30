@@ -11,6 +11,7 @@ public class BTree<E extends Comparable<E>>{
         this.root  = null; //El árbol inicia vacío.
     }
     public boolean isEmpty(){
+
         return root == null; //Verifica si existe raíz.
     }
 
@@ -64,6 +65,7 @@ public class BTree<E extends Comparable<E>>{
     private void putNode(BNode<E> current, E cl, BNode<E> rd, int k){
         //Mover claves e hijos una posición a la derecha.
         for (int i = current.count - 1; i >= k; i--) {
+         
             current.keys.set(i + 1,  current.keys.get(i));
             current.childs.set(i + 2, current.childs.get(i + 1));
         }
